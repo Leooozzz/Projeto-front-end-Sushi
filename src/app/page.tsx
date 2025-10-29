@@ -10,7 +10,7 @@ export default function Home() {
 
   return (
     <div>
-      <ToggleTheme />
+      <ToggleTheme/>
       <div
         className="h-[1000px] bg-fixed bg-center bg-cover"
         style={{
