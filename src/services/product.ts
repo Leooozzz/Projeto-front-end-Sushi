@@ -5,6 +5,6 @@ export const getAllProducts = async (): Promise<Product[]> => {
   return new Promise((resolve,reject)=>{
     return setTimeout(()=>(
         resolve(products)
-    ),2000)
+    ),1000)
   })
 };

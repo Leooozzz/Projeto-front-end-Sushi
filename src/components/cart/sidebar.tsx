@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "../ui/button";
 import {
   Sheet,
@@ -7,19 +8,28 @@ import {
   SheetTrigger,
 } from "../ui/sheet";
 import { Separator } from "../ui/separator";
+import { useCartStore } from "@/app/store/cart-store";
+import { CartItem } from "./item";
 
 export const CartSideBar = () => {
+  const { cart } = useCartStore((state) => state);
+
+  let subtotal=0;
+  for(let item of cart){
+    subtotal += item.quantity * item.product.price
+  }
+
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button>
+        <Button className="relative">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="size-6"
+            className="size-5"
           >
             <path
               strokeLinecap="round"
@@ -28,17 +38,22 @@ export const CartSideBar = () => {
             />
           </svg>
           <span>Carrinho</span>
+          {cart.length > 0 && (
+            <div className="absolute size-3 bg-red-600 rounded-full -right-1 -top-1"></div>
+          )}
         </Button>
       </SheetTrigger>
-      <SheetContent>
+      <SheetContent className="p-3">
         <SheetHeader>
           <SheetTitle>Carrinho</SheetTitle>
         </SheetHeader>
-        <div className="flex flex-col gap-5 my-2">...</div>
+        <div className="flex flex-col gap-5 my-2">{cart.map(item=>(
+          <CartItem key={item.product.id} item={item}/>
+        ))}</div>
         <Separator className="my-4 " />
         <div className="flex justify-between items-center text-xs">
           <div className="p-1">Subtotal: </div>
-          <div className="p-1">...</div>
+          <div className="p-1">R$ {subtotal.toFixed(2)}</div>
         </div>
 
         <Separator className="my-4" />
