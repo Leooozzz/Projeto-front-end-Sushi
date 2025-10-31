@@ -10,10 +10,12 @@ import {
 import { Separator } from "../ui/separator";
 import { useCartStore } from "@/app/store/cart-store";
 import { CartItem } from "./item";
+import { useState } from "react";
+import { CheckoutDialog } from "../checkout/dialog";
 
 export const CartSideBar = () => {
   const { cart } = useCartStore((state) => state);
-
+  const [checkoutOpen,setCheckouOpen]=useState(false)
   let subtotal=0;
   for(let item of cart){
     subtotal += item.quantity * item.product.price
@@ -59,10 +61,14 @@ export const CartSideBar = () => {
         <Separator className="my-4" />
 
         <div className="text-center">
-          <Button>
+          <Button onClick={()=>setCheckouOpen(true)}>
             <span>Finalizar compra</span>
           </Button>
         </div>
+        <CheckoutDialog
+          open={checkoutOpen}
+          onOpenChange={setCheckouOpen}
+        />
       </SheetContent>
     </Sheet>
   );

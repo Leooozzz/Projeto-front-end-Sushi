@@ -1,0 +1,1 @@
+export type CheckOutSteps= "user" | "address" | "finish";
