@@ -18,9 +18,9 @@ Este projeto foi construído com as seguintes tecnologias:
 
 🧪 Zod (validação)
 
-🔄 Context API (ou Zustand, se usar)
+🔄 Zustand
 
-🌐 Vite (ou Next, se for outro bundler)
+🌐  Next
 
 🧩 Componentização reutilizável
 
