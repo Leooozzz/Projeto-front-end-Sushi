@@ -38,6 +38,7 @@
 ### 1️⃣ Clonar o repositório
 
 ```bash
+
 git clone https://github.com/Leooozzz/Projeto-front-end-Sushi.git
 
 Entre no diretório:
